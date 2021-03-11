@@ -1,0 +1,35 @@
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/view-payments/muk/2
+
+###
+
+POST http://localhost:3000/add-user
+content-type: application/json
+
+{
+    "name":"joel",
+    "group":"muk",
+    "loan":100000,
+    "id":2
+}
+
+###
+POST http://localhost:3000/request-loan
+content-type: application/json
+
+{  "name":"joel",
+    "group":"muk",
+    "loan":100000,
+    "id":2
+}
+
+###
+POST http://localhost:3000/submit-payment
+content-type: application/json
+
+{
+    "group":"muk",
+    "id":2
+}
