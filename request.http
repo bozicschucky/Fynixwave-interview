@@ -9,7 +9,7 @@ POST http://localhost:3000/add-user
 content-type: application/json
 
 {
-    "name":"joel",
+    "name":"joe",
     "group":"muk",
     "loan":100000,
     "id":2

@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const users = {};
 const INTEREST_RATE = 0.1;
-const MONTHS = 5;
+const MONTHS = 3;
 let monthlyPayment;
 
 // parse application/json
@@ -81,21 +81,19 @@ app.post("/submit-payment", (req, res) => {
     interestPaid = latestPaymentValue * INTEREST_RATE;
     principlePaid = monthlyPayment - interestPaid;
     outstandingBalance = latestPaymentValue - principlePaid;
-    console.log("value -->", Math.round(outstandingBalance));
-    console.log("value -->", outstandingBalance);
-    user["payments"].push(Math.round(outstandingBalance));
+    user["payments"].push(outstandingBalance);
   } else {
     interestPaid = loan * INTEREST_RATE;
     principlePaid = monthlyPayment - interestPaid;
     outstandingBalance = loan - principlePaid;
     user["payments"].push(Math.round(outstandingBalance));
   }
-  user["interestPaid"] = +interestPaid.toFixed(0);
+  user["interestPaid"] = Math.round(interestPaid);
   user["outstandingBalance"] = Math.round(outstandingBalance);
-  user["principlePaid"] = +principlePaid.toFixed(0);
-  user["monthlyPayment"] = +monthlyPayment.toFixed(0);
+  user["principlePaid"] = Math.round(principlePaid);
+  user["monthlyPayment"] = Math.round(monthlyPayment);
   amountPaid = user["payments"].length * monthlyPayment;
-  user["amountPaid"] = +amountPaid.toFixed(0);
+  user["amountPaid"] = Math.round(amountPaid);
   res.status(200).json({
     user,
   });
